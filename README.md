@@ -67,9 +67,27 @@ mkdir -p ~/.codex/skills
 cp -R <path-to>/llm-wiki* ~/.codex/skills/
 ```
 
-Expected layout after install:
+Expected layout after install — the same skill folders in both locations:
 
 ```
+~/.claude/skills/
+├── llm-wiki
+│   └── SKILL.md
+├── llm-wiki-delete
+│   └── SKILL.md
+├── llm-wiki-ingest
+│   └── SKILL.md
+├── llm-wiki-lint
+│   └── SKILL.md
+├── llm-wiki-logs
+│   └── SKILL.md
+├── llm-wiki-query
+│   └── SKILL.md
+├── llm-wiki-review
+│   └── SKILL.md
+└── llm-wiki-stats
+    └── SKILL.md
+
 ~/.codex/skills/
 ├── llm-wiki
 │   └── SKILL.md
@@ -85,8 +103,9 @@ Expected layout after install:
     └── SKILL.md
 ```
 
-(`~/.claude/skills/` gets the same tree; `llm-wiki-stats` may also be present
-on some machines.)
+(Other personal skills may share these directories — e.g. `~/.claude/skills/`
+may contain unrelated entries; only the `llm-wiki*` folders are needed for
+this repo.)
 
 Restart the agent. Verify in Claude Code with `/help` (the `llm-wiki-*`
 commands should be listed); in Codex the skills load automatically when
