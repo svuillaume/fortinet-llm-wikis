@@ -52,9 +52,8 @@ Conventions:
 
 **Install the llm-wiki skills (Claude Code and Codex)**
 
-The skills (`llm-wiki`, `llm-wiki-query`, `llm-wiki-ingest`, `llm-wiki-lint`,
-`llm-wiki-logs`, `llm-wiki-stats`, `llm-wiki-review`) are distributed as plain
-`SKILL.md` folders. The same folders work in both Claude Code and Codex:
+The skills are distributed as plain `SKILL.md` folders. The same folders work
+in both Claude Code and Codex:
 
 ```bash
 # from a machine that already has them, or any copy of the skill folders:
@@ -67,6 +66,27 @@ cp -R <path-to>/llm-wiki* ~/.claude/skills/
 mkdir -p ~/.codex/skills
 cp -R <path-to>/llm-wiki* ~/.codex/skills/
 ```
+
+Expected layout after install:
+
+```
+~/.codex/skills/
+├── llm-wiki
+│   └── SKILL.md
+├── llm-wiki-ingest
+│   └── SKILL.md
+├── llm-wiki-lint
+│   └── SKILL.md
+├── llm-wiki-logs
+│   └── SKILL.md
+├── llm-wiki-query
+│   └── SKILL.md
+└── llm-wiki-review
+    └── SKILL.md
+```
+
+(`~/.claude/skills/` gets the same tree; `llm-wiki-stats` may also be present
+on some machines.)
 
 Restart the agent. Verify in Claude Code with `/help` (the `llm-wiki-*`
 commands should be listed); in Codex the skills load automatically when
