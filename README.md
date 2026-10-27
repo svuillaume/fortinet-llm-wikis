@@ -44,24 +44,37 @@ Conventions:
 |---|---|---|
 | [Git](https://git-scm.com/) + access to the repo | Everyone | `git clone` (step 1) |
 | [Claude Code](https://claude.com/claude-code) | Claude workflow | Install via `npm install -g @anthropic-ai/claude-code` or the native installer |
-| **llm-wiki skills** | `/llm-wiki-query` etc. | Not on a public marketplace — copy the `llm-wiki*` skill folders into `~/.claude/skills/` (see below) |
-| Any other LLM agent with file access (Codex, OpenAI-compatible, …) | Generic workflow | No extra install — just a system prompt (see step 4) |
+| [Codex](https://github.com/openai/codex) (CLI or IDE) | Codex workflow | Skills supported — install into `~/.codex/skills/` (see below) |
+| [ChatGPT](https://chatgpt.com) | ChatGPT workflow | No skill system — upload the wiki files and use the system prompt (step 4) |
+| **llm-wiki skills** | `/llm-wiki-query` etc. in Claude Code / Codex | Not on a public marketplace — copy the `llm-wiki*` skill folders (see below) |
+| Any other LLM agent with file access | Generic workflow | No extra install — just a system prompt (step 4) |
 
-**Install the llm-wiki skills (Claude Code only)**
+**Install the llm-wiki skills (Claude Code and Codex)**
 
 The skills (`llm-wiki`, `llm-wiki-query`, `llm-wiki-ingest`, `llm-wiki-lint`,
 `llm-wiki-logs`, `llm-wiki-stats`, `llm-wiki-review`) are distributed as plain
-folders. On a machine that doesn't have them:
+`SKILL.md` folders. The same folders work in both Claude Code and Codex:
 
 ```bash
 # from a machine that already has them, or any copy of the skill folders:
+
+# Claude Code
 mkdir -p ~/.claude/skills
 cp -R <path-to>/llm-wiki* ~/.claude/skills/
+
+# Codex (CLI / IDE — same SKILL.md format)
+mkdir -p ~/.codex/skills
+cp -R <path-to>/llm-wiki* ~/.codex/skills/
 ```
 
-Restart Claude Code. Verify with `/help` — the `llm-wiki-*` commands should be
-listed. (Without the skills the wiki still works: just ask questions directly
-and the agent will read the markdown — skills just standardize the workflow.)
+Restart the agent. Verify in Claude Code with `/help` (the `llm-wiki-*`
+commands should be listed); in Codex the skills load automatically when
+relevant. **ChatGPT has no skill mechanism** — use step 4 (upload files +
+system prompt) there.
+
+Without the skills the wiki still works everywhere: just ask questions
+directly and the agent will read the markdown — skills just standardize the
+workflow.
 
 ### Step 1 — Clone the repo
 
@@ -76,8 +89,11 @@ Open the repo folder in your agent of choice:
 
 - **Claude Code**: `claude` from inside the repo (or open the folder in
   Claude Code desktop/IDE).
-- **Codex or any other agent**: point it at the repo directory and give it
-  file-reading access.
+- **Codex**: open the repo directory in Codex (CLI or IDE) with file access.
+- **ChatGPT**: upload the wiki folder (the `index.md`, `topics/` pages and
+  `sources/` stubs — or zip it) as a file; no install needed.
+- **Any other agent**: point it at the repo directory with file-reading
+  access.
 
 ### Step 3 — Ask your question
 
@@ -102,7 +118,7 @@ Or just ask naturally — the agent will start at the relevant wiki's
 - For other workflows: `/llm-wiki-ingest` (add documents),
   `/llm-wiki-lint` (health check), `/llm-wiki-stats` (coverage report).
 
-### Step 4 — Using with OpenAI or other LLMs
+### Step 4 — Using with ChatGPT or other LLMs
 
 LLM wikis are just markdown, so any model with file access works — no skills
 needed:
