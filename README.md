@@ -195,6 +195,26 @@ needed:
 | Health check | `llm-wiki-lint` skill (broken links, orphaned sources, stale pages) |
 | Stats | `llm-wiki-stats` skill (page counts, coverage, gaps) |
 
+## Reference: the `llm-wiki` commands
+
+Slash commands (Claude Code) / auto-loaded skills (Codex). All take the
+question or target as arguments.
+
+| Command | What it does | When to use it | Example |
+|---|---|---|---|
+| `/llm-wiki` | Build or extend a wiki from raw documents (docx, pptx, pdf, md, txt, web pages, transcripts) | Starting a new wiki, or a big batch of docs to consolidate | `/llm-wiki build a wiki from ./corpus/` |
+| `/llm-wiki-query` | **Answer a question from the wiki** instead of re-reading raw docs | Day-to-day: any "what does the wiki say about X?" | `/llm-wiki-query What is FortiCNAPP for non-technical audiences?` |
+| `/llm-wiki-ingest` | Add or refresh one or more source documents in an existing wiki | A new doc, URL, or transcript lands and should join the wiki | `/llm-wiki-ingest ./new-admin-guide.pdf` |
+| `/llm-wiki-lint` | Audit the wiki: staleness, broken links, orphan pages, conflicts, missing source refs | Before sharing the wiki, or when answers feel off | `/llm-wiki-lint` |
+| `/llm-wiki-logs` | List references added in the last N days (default 30): what, how, when, by whom | "What was added recently?" / audit trail | `/llm-wiki-logs 14` |
+| `/llm-wiki-stats` | Wiki size, file counts per folder, growth, largest topic pages, recent references | Get a sense of coverage and growth | `/llm-wiki-stats` |
+| `/llm-wiki-review` | List, inspect, approve, defer, or update items marked `needs-review` / conflicted / superseded | Work through disputed pages (common in the FortiCASB wiki) | `/llm-wiki-review` |
+| `/llm-wiki-delete` | Delete a topic page and/or source stub, cleaning up index, citations and links consistently | Prune obsolete content without leaving broken links | `/llm-wiki-delete topics/product/foo.md` |
+
+Quick mental model: **query** to read, **ingest** to write, **lint** to
+check, **logs/stats/review** to manage, **delete** to prune, **llm-wiki** to
+bootstrap.
+
 ---
 
 *Both wikis were compiled on this machine from local document corpora;
