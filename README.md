@@ -38,6 +38,31 @@ Conventions:
 
 ## How to use it
 
+### Prerequisites
+
+| Requirement | Needed for | How |
+|---|---|---|
+| [Git](https://git-scm.com/) + access to the repo | Everyone | `git clone` (step 1) |
+| [Claude Code](https://claude.com/claude-code) | Claude workflow | Install via `npm install -g @anthropic-ai/claude-code` or the native installer |
+| **llm-wiki skills** | `/llm-wiki-query` etc. | Not on a public marketplace — copy the `llm-wiki*` skill folders into `~/.claude/skills/` (see below) |
+| Any other LLM agent with file access (Codex, OpenAI-compatible, …) | Generic workflow | No extra install — just a system prompt (see step 4) |
+
+**Install the llm-wiki skills (Claude Code only)**
+
+The skills (`llm-wiki`, `llm-wiki-query`, `llm-wiki-ingest`, `llm-wiki-lint`,
+`llm-wiki-logs`, `llm-wiki-stats`, `llm-wiki-review`) are distributed as plain
+folders. On a machine that doesn't have them:
+
+```bash
+# from a machine that already has them, or any copy of the skill folders:
+mkdir -p ~/.claude/skills
+cp -R <path-to>/llm-wiki* ~/.claude/skills/
+```
+
+Restart Claude Code. Verify with `/help` — the `llm-wiki-*` commands should be
+listed. (Without the skills the wiki still works: just ask questions directly
+and the agent will read the markdown — skills just standardize the workflow.)
+
 ### Step 1 — Clone the repo
 
 ```bash
@@ -77,9 +102,10 @@ Or just ask naturally — the agent will start at the relevant wiki's
 - For other workflows: `/llm-wiki-ingest` (add documents),
   `/llm-wiki-lint` (health check), `/llm-wiki-stats` (coverage report).
 
-### OpenAI / other LLMs
+### Step 4 — Using with OpenAI or other LLMs
 
-LLM wikis are just markdown, so any model with file access works:
+LLM wikis are just markdown, so any model with file access works — no skills
+needed:
 
 1. Upload the wiki folder (or give the agent file access to it).
 2. Instruct it:
