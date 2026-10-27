@@ -45,6 +45,7 @@ Conventions:
 | [Git](https://git-scm.com/) + access to the repo | Everyone | `git clone` (step 1) |
 | [Claude Code](https://claude.com/claude-code) | Claude workflow | Install via `npm install -g @anthropic-ai/claude-code` or the native installer |
 | [Codex](https://github.com/openai/codex) (CLI or IDE) | Codex workflow | Skills supported — install into `~/.codex/skills/` (see below) |
+| [Claude](https://claude.ai) (web / phone app) | Mobile / browser use | Add the skills to claude.ai and attach the wiki files (see note below) |
 | [ChatGPT](https://chatgpt.com) | ChatGPT workflow | No skill system — upload the wiki files and use the system prompt (step 4) |
 | **llm-wiki skills** | `/llm-wiki-query` etc. in Claude Code / Codex | Not on a public marketplace — copy the `llm-wiki*` skill folders (see below) |
 | Any other LLM agent with file access | Generic workflow | No extra install — just a system prompt (step 4) |
@@ -69,8 +70,17 @@ cp -R <path-to>/llm-wiki* ~/.codex/skills/
 
 Restart the agent. Verify in Claude Code with `/help` (the `llm-wiki-*`
 commands should be listed); in Codex the skills load automatically when
-relevant. **ChatGPT has no skill mechanism** — use step 4 (upload files +
-system prompt) there.
+relevant.
+
+> **Using skills on Claude (web/phone):** you can also add these skills to
+> [claude.ai](https://claude.ai) so you benefit from them in the Claude app
+> on your phone or in the browser. Upload the `SKILL.md` files (or the skill
+> folders) via claude.ai's skill/customization settings, and attach the wiki
+> files to your conversation. The same applies to Claude Desktop and the
+> desktop app's file access.
+>
+> **ChatGPT has no skill mechanism** — use step 4 (upload files + system
+> prompt) there.
 
 Without the skills the wiki still works everywhere: just ask questions
 directly and the agent will read the markdown — skills just standardize the
@@ -90,6 +100,8 @@ Open the repo folder in your agent of choice:
 - **Claude Code**: `claude` from inside the repo (or open the folder in
   Claude Code desktop/IDE).
 - **Codex**: open the repo directory in Codex (CLI or IDE) with file access.
+- **Claude (web / phone)**: add the skills to claude.ai, then attach the wiki
+  files to your conversation (see the note in Prerequisites).
 - **ChatGPT**: upload the wiki folder (the `index.md`, `topics/` pages and
   `sources/` stubs — or zip it) as a file; no install needed.
 - **Any other agent**: point it at the repo directory with file-reading
