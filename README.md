@@ -38,29 +38,50 @@ Conventions:
 
 ## How to use it
 
-### Claude Code (recommended)
+### Step 1 — Clone the repo
 
-1. Open the repo (or a wiki folder) in Claude Code.
-2. Ask questions directly — e.g. *"How does FortiCASB-SSPM workflows work?"*
-   or *"What CSPM policy types does FortiCNAPP support?"*. The agent starts
-   at `index.md`, follows links to the relevant topic pages, and cites sources.
-3. Optional: for repeated workflows, invoke the `llm-wiki` skills
-   (`llm-wiki-query`, `llm-wiki-ingest`, `llm-wiki-lint`, `llm-wiki-stats`)
-   — query, extend, health-check, and report on the wiki respectively.
+```bash
+git clone https://github.com/svuillaume/fortinet-llm-wikis.git
+cd fortinet-llm-wikis
+```
 
-Tips:
+### Step 2 — Open it in your AI assistant
 
-- For multi-part research, ask for answers with `[src:]` citations so you can
-  verify against `sources/`.
-- If a page says `needs-review`, treat the answer as disputed — the wiki will
-  tell you which documents conflict.
+Open the repo folder in your agent of choice:
+
+- **Claude Code**: `claude` from inside the repo (or open the folder in
+  Claude Code desktop/IDE).
+- **Codex or any other agent**: point it at the repo directory and give it
+  file-reading access.
+
+### Step 3 — Ask your question
+
+In Claude Code, use the wiki query skill:
+
+```
+/llm-wiki-query What is FortiCNAPP for non-technical audiences?
+/llm-wiki-query How does FortiCASB-SSPM revoke third-party app access?
+/llm-wiki-query What are the FortiCASB SKUs and list prices?
+```
+
+Or just ask naturally — the agent will start at the relevant wiki's
+`index.md`, follow links to topic pages, and cite sources with
+`[src: <stub>]` so you can verify.
+
+**Tips**
+
+- Name the product so the agent picks the right wiki: FortiCNAPP →
+  `forticnapp-llm-wiki/`, FortiCASB → `forticasb-llm-wiki/`.
+- If a page says `needs-review`, the wiki tells you which documents
+  disagree — treat the answer as disputed.
+- For other workflows: `/llm-wiki-ingest` (add documents),
+  `/llm-wiki-lint` (health check), `/llm-wiki-stats` (coverage report).
 
 ### OpenAI / other LLMs
 
 LLM wikis are just markdown, so any model with file access works:
 
-1. Give the model the wiki folder (upload the files, or run an agent with a
-   file-reading tool over the directory).
+1. Upload the wiki folder (or give the agent file access to it).
 2. Instruct it:
 
    > "Use `<product>-llm-wiki/` as the knowledge base. Start from
